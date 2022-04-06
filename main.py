@@ -5,22 +5,23 @@ from threading import Thread
 from multiprocessing import Process
 
 
+# Замеряет время выполнения
 def measure_time(func):
     def measure():
         begin = time.time()
-
         n = func()
-
         print("Задание", n)
         print("Time:", time.time() - begin, end="\n\n")
 
     return measure
 
 
+# Для IO bound
 def t():
     res = requests.get('https://google.com')
 
 
+# Для CPU bound
 def countdown():
     i = 0
     while i < 5_000_000:
@@ -33,7 +34,6 @@ def one():
     res = list()
     for i in range(10):
         res.append(requests.get('https://google.com'))
-
     return 1
 
 
@@ -72,7 +72,6 @@ def three():
 def four():
     for i in range(10):
         countdown()
-
     return 4
 
 
